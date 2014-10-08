@@ -6,10 +6,6 @@ module Audrey
   # Sensible default
   @@owner_class = "User"
 
-  def self.owner_class=(klass='User')
-    @@owner_class = klass
-  end
-
   def self.owner_class
     @@owner_class.constantize
   end
