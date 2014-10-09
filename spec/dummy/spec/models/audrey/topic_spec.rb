@@ -11,5 +11,26 @@ RSpec.describe Audrey::Topic, :type => :model do
     end
   end
 
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#Associations" do
+    it "belongs_to owner" do
+      expect(create(:topic).respond_to?(:owner)).to eq(true)
+    end
+
+    it "has_many votes" do
+      expect(create(:topic).respond_to?(:votes)).to eq(true)
+    end
+  end
+
+  describe "#Validations" do
+    it "validates presence_of user" do
+      expect(build(:topic, owner: nil)).to_not be_valid
+    end
+    it "validates presence_of topic" do
+      expect(build(:topic, topic: nil)).to_not be_valid
+    end
+    it "validates presence_of value" do
+      expect(build(:topic, content: nil)).to_not be_valid
+    end
+  end
+
 end
