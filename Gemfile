@@ -12,5 +12,6 @@ gemspec
 
 # To use debugger
 # gem 'debugger'
+gem 'kaminari'
 
 gem 'pry'
