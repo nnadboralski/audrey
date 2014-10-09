@@ -1,3 +1,5 @@
 Audrey::Engine.routes.draw do
- root :to => 'feedback#index'
+ root :to => 'topics#index'
+
+ get :index, to: 'topics#index'
 end

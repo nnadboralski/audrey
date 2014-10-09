@@ -8,7 +8,7 @@ module Audrey
     validates_presence_of :owner
 
     def score
-      Audrey::Vote.where(id: self.id).sum(:value)
+      self.votes.sum(:value)
     end
 
   end
