@@ -2,18 +2,38 @@ require 'rails_helper'
 
 RSpec.describe Audrey::TopicsController, :type => :controller do
 
-  describe "#show" do
-    it "should return page's info" do
+  describe "#index" do
+    it "should return ok and an index of all topics" do
       get :index, use_route: :audrey
       expect(response).to have_http_status(:ok)
     end
+  end
 
-    it "should return status and error when no such page" do
-      get :show, format: :json, id: 0
+  describe "#create" do
+    it "should return ok and create a new topic" do
+      post :create, use_route: :audrey
+      expect(response).to have_http_status(:ok)
+    end
+  end
 
-      expect(response).to have_http_status(:not_found)
-      expect(json_response["error"]).to eq translation_for('controllers.api.static_pages.errors.not_found')
+  describe "#update" do
+    it "should return ok and update an existing topic" do
+      post :update, use_route: :audrey
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe "#show" do
+    it "should return ok and display the specifc topic" do
+      get :show, use_route: :audrey
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe "#vote" do
+    it "should vote on a topic" do
+      get :vote, use_route: :audrey
+      expect(response).to have_http_status(:ok)
     end
   end
 end
-
