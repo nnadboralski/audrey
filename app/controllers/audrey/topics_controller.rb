@@ -8,7 +8,7 @@ module Audrey
     end
 
     def create
-      topic = Topic.create(topic_params)
+      topic = Topic.create!(topic_params)
     end
 
     def show
@@ -16,12 +16,11 @@ module Audrey
     end
 
     def update
-      topic = Topic.find(params[:id])
-      topic.update_attributes(topic_params)
+      Topic.find_by!(id: params[:id]).update_attributes(topic_params)
     end
 
     def vote
-      Vote.create(vote_params)
+      Topic.find(params[:id]).vote
     end
 
     private

@@ -13,5 +13,9 @@ module Audrey
       self.votes.sum(:value)
     end
 
+    def vote
+      Vote.create(user: current_user, topic_id: self.id, value: 1)
+    end
+
   end
 end
