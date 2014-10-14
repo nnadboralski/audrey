@@ -4,7 +4,7 @@ rvm:
 addons:
   postgresql: "9.3"
 script:
-  - cd spec/dummy; bundle exec rake travis
+  - spec/dummy/bundle exec rake travis
 notifications:
   email:
     - github@u4g.com
