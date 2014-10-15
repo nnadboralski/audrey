@@ -3,6 +3,11 @@ rvm:
   - 2.1.2
 addons:
   postgresql: "9.3"
+before_script:
+  - psql -c 'create database dummy_test;' -U postgres
+  - psql -c 'create role dummy;' -U postgres
+  - psql -c 'alter role dummy with login;' -U postgres
+  - psql -c 'alter role dummy with superuser;' -U postgres
 script:
   - cd spec/dummy; bundle exec rspec
 notifications:
