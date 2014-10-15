@@ -10,8 +10,10 @@ RSpec.describe Audrey::TopicsController, :type => :controller do
   end
 
   describe "#create" do
+    let(:owner) { FactoryGirl.create(:user) }
+
     it "should return ok and create a new topic" do
-      post :create, use_route: :audrey, topic: { topic: "This is a test topic" }
+      post :create, use_route: :audrey, topic: { topic: "This is a test topic", content: "This is test content", owner_id: owner.id.to_i }
       expect(response).to have_http_status(:ok)
     end
   end
@@ -39,7 +41,7 @@ RSpec.describe Audrey::TopicsController, :type => :controller do
     let(:user) { FactoryGirl.create(:user) }
 
     it "should vote on a topic" do
-      get :vote, use_route: :audrey, vote: {topic_id: topic.id, value: 1, user_id: user.id }
+      get :vote, use_route: :audrey, id: topic.id, vote: {topic_id: topic.id, value: 1, user_id: user.id }
       expect(response).to have_http_status(:ok)
     end
   end
