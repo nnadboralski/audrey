@@ -1,10 +1,33 @@
-<h1>Topics#index</h1>
-<p>Find me in app/views/audrey/topics/index.html.erb</p>
+<div class="container audrey-feedback-engine">
 <% @topics.each do |topic| %>
-  <tr>
-     <td><%= topic.score %></td>
-     <td><%= topic.topic %></td>
-  </tr>
-  <br>
-<% end %>
 
+  <div class="topic-item" id="topic-<%= topic.id %>">
+    <div class="row">
+      <div class="large-9 columns">
+        <span class="header">
+          <strong><%= topic.topic %></strong> <em class="subheader"> by <%= topic.owner.name %></em>
+        </span>
+      </div>
+
+      <div class="large-3 columns button-bar">
+        <ul class="button-group radius">
+          <li><a href="#" class="label button success">Upvote</a></li>
+          <li><a href="#" class="label button alert">Downvote</a></li>
+        </ul>
+        <span class="score text-right">
+          <small> score: <%= topic.score %> </small>
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <p class="text-justify">
+          <%= topic.content %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+</div>
