@@ -4,7 +4,7 @@ class CreateAudreyTopics < ActiveRecord::Migration
       t.string  :topic
       t.text    :content
 
-      t.integer :owner_id
+      t.references :owner
       t.timestamps
     end
   end
