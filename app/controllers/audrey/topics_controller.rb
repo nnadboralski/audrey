@@ -20,12 +20,12 @@ module Audrey
     end
 
     def vote
-      Topic.find(params[:id]).vote
+      Topic.find(params[:id]).vote(params[:user])
     end
 
     private
     def topic_params
-      params.require(:topic).permit(:owner, :topic, :content)
+      params.require(:topic).permit(:owner_id, :topic, :content)
     end
 
     def vote_params
