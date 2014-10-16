@@ -4,7 +4,7 @@ module Audrey
   class TopicsController < ApplicationController
 
     def index
-      Topic.joins(:votes).select("audrey_topics.*, sum(audrey_votes.value) as vcount").group("audrey_topics.id").order("vcount DESC")
+      @topics = Topic.joins{votes.outer}.select("audrey_topics.*, sum(audrey_votes.value) as vcount").group("audrey_topics.id").order("vcount DESC")
     end
 
     def create
