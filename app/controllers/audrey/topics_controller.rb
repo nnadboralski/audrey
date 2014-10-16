@@ -14,7 +14,8 @@ module Audrey
 
     def create
       params[:owner_id] = current_user.id
-      topic = Topic.create!(topic_params)
+      Topic.create!(topic_params)
+      redirect_to(root_path)
     end
 
     def show
@@ -25,8 +26,14 @@ module Audrey
       Topic.find_by!(id: params[:id]).update_attributes(topic_params)
     end
 
-    def vote
-      Topic.find(params[:id]).vote(current_user.id)
+    def up_vote
+      Topic.find(params[:id]).vote(current_user.id, 1)
+      redirect_to(root_path)
+    end
+
+    def down_vote
+      Topic.find(params[:id]).vote(current_user.id, -1)
+      redirect_to(root_path)
     end
 
     private
@@ -35,7 +42,7 @@ module Audrey
     end
 
     def vote_params
-      params.require(:vote).permit(:user, :topic, :value)
+      params.permit(:user, :topic, :value)
     end
 
     def authenticate
