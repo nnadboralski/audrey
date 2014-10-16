@@ -1,0 +1,35 @@
+<%= form_for([audrey, @topic]) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this foobar from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <label>
+        Topic:
+        <%= text_field_tag(:topic) %>
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <label>
+        Content:
+        <%= text_field_tag(:content) %>
+      </label>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

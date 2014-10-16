@@ -27,21 +27,12 @@ RSpec.describe Audrey::TopicsController, :type => :controller do
     end
   end
 
-  describe "#show" do
-    let(:topic) { FactoryGirl.create(:topic, :with_votes) }
-
-    it "should return ok and display the specifc topic" do
-      get :show, use_route: :audrey, id: topic.id
-      expect(response).to have_http_status(:ok)
-    end
-  end
-
   describe "#vote" do
     let(:topic) { FactoryGirl.create(:topic, :with_votes) }
     let(:user) { FactoryGirl.create(:user) }
 
     it "should vote on a topic" do
-      get :vote, use_route: :audrey, id: topic.id, vote: {topic_id: topic.id, value: 1, user_id: user.id }
+      get :vote, use_route: :audrey, id: topic.id, vote: {topic_id: topic.id, value: 1 }
       expect(response).to have_http_status(:ok)
     end
   end

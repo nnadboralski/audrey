@@ -1,9 +1,11 @@
 Audrey::Engine.routes.draw do
-  get 'topics/index'
-  get 'topics/create'
-  get 'topics/show'
-  get 'topics/update'
+  resources :topics do
+    member do
+      get :up_vote, action: 'up_vote'
+      get :down_vote, action: 'down_vote'
+    end
+  end
 
- root :to => 'topics#index'
- get :index, to: 'topics#index'
+  root :to => 'topics#index'
+  get :index, to: 'topics#index'
 end
