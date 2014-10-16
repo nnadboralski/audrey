@@ -1,4 +1,4 @@
-<%= form_for(@topic) do |f| %>
+<%= form_for([audrey, @topic]) do |f| %>
   <% if @topic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this foobar from being saved:</h2>
@@ -15,7 +15,7 @@
     <div class="large-12 columns">
       <label>
         Topic:
-        <input type="text" value="<%= @topic.topic %>" />
+        <%= text_field_tag(:topic) %>
       </label>
     </div>
   </div>
@@ -24,7 +24,7 @@
     <div class="large-12 columns">
       <label>
         Content:
-        <textarea value="<%= @topic.topic %>"></textarea>
+        <%= text_field_tag(:content) %>
       </label>
     </div>
   </div>

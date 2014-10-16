@@ -2,6 +2,7 @@ require_dependency "audrey/application_controller"
 
 module Audrey
   class TopicsController < ApplicationController
+    before_filter :authenticate, except: :index
 
     def index
       @topics = Topic.joins{votes.outer}.select("audrey_topics.*, sum(audrey_votes.value) as vcount").group("audrey_topics.id").order("vcount DESC")
@@ -12,6 +13,7 @@ module Audrey
     end
 
     def create
+      params[:owner_id] = current_user.id
       topic = Topic.create!(topic_params)
     end
 
@@ -29,11 +31,17 @@ module Audrey
 
     private
     def topic_params
-      params.require(:topic).permit(:owner_id, :topic, :content)
+      params.permit(:owner_id, :topic, :content)
     end
 
     def vote_params
       params.require(:vote).permit(:user, :topic, :value)
+    end
+
+    def authenticate
+      unless !current_user.nil?
+        redirect_to(root_path)
+      end
     end
   end
 end
