@@ -7,6 +7,10 @@ module Audrey
       @topics = Topic.joins{votes.outer}.select("audrey_topics.*, sum(audrey_votes.value) as vcount").group("audrey_topics.id").order("vcount DESC")
     end
 
+    def new
+      @topic = Topic.new
+    end
+
     def create
       topic = Topic.create!(topic_params)
     end

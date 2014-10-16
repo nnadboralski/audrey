@@ -1,9 +1,8 @@
 Audrey::Engine.routes.draw do
-  get 'topics/index'
-  get 'topics/create'
-  get 'topics/show'
-  get 'topics/update'
+  get 'topics/new'
+  post 'topics/create'
+  patch 'topics/update'
 
- root :to => 'topics#index'
- get :index, to: 'topics#index'
+  root :to => 'topics#index'
+  get :index, to: 'topics#index'
 end
