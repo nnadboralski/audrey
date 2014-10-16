@@ -13,8 +13,8 @@ module Audrey
       self.votes.sum(:value)
     end
 
-    def vote(user)
-      Vote.create(user: user, topic_id: self.id, value: 1)
+    def vote(user_id)
+      Vote.create(user_id: user_id, topic_id: self.id, value: 1)
     end
 
   end

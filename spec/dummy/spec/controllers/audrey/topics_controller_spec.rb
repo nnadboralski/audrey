@@ -41,7 +41,7 @@ RSpec.describe Audrey::TopicsController, :type => :controller do
     let(:user) { FactoryGirl.create(:user) }
 
     it "should vote on a topic" do
-      get :vote, use_route: :audrey, id: topic.id, vote: {topic_id: topic.id, value: 1, user_id: user.id }
+      get :vote, use_route: :audrey, id: topic.id, vote: {topic_id: topic.id, value: 1 }
       expect(response).to have_http_status(:ok)
     end
   end

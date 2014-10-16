@@ -20,7 +20,7 @@ module Audrey
     end
 
     def vote
-      Topic.find(params[:id]).vote(params[:user])
+      Topic.find(params[:id]).vote(current_user.id)
     end
 
     private
